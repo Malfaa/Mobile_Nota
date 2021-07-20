@@ -1,0 +1,2 @@
+rootProject.name = "NotaApp"
+include ':app'

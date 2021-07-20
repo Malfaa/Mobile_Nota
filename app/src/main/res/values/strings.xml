@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NotaApp</string>
+    <string name="delete_bin">Deletar Nota</string>
+</resources>

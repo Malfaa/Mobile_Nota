@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="itemLista"
+            type="com.example.notaapp.room.Nota" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/nota_cor">
+
+        <TextView
+            android:id="@+id/notaTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/nota_dimen"
+            android:layout_marginLeft="@dimen/nota_dimen"
+            android:layout_marginTop="@dimen/nota_dimen"
+            android:layout_marginBottom="@dimen/nota_dimen"
+            android:text="@{itemLista.nota]"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/nota_dimen"
+            android:layout_marginEnd="@dimen/nota_dimen"
+            android:layout_marginRight="@dimen/nota_dimen"
+            android:layout_marginBottom="@dimen/nota_dimen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_delete_24"
+            tools:ignore="VectorDrawableCompat"
+            android:contentDescription="@string/delete_bin" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
