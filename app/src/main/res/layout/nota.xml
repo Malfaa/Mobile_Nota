@@ -22,7 +22,8 @@
             android:layout_marginLeft="@dimen/nota_dimen"
             android:layout_marginTop="@dimen/nota_dimen"
             android:layout_marginBottom="@dimen/nota_dimen"
-            android:text="@{itemLista.nota]"
+            android:text="@{itemLista.nota
+            ]"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

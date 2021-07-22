@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notaapp.R
 import com.example.notaapp.databinding.MainNotasFragmentBinding
@@ -13,7 +14,7 @@ import com.example.notaapp.databinding.NotaBinding
 import com.example.notaapp.databinding.NotaBindingImpl
 import com.example.notaapp.room.Nota
 
-class MainAdapter (private val lista: List<Nota>): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter (private val lista: LiveData<List<Nota>>): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //val itemView = LayoutInflater.from(parent.context).inflate(R.layout.nota, parent, false)
@@ -26,12 +27,13 @@ class MainAdapter (private val lista: List<Nota>): RecyclerView.Adapter<MainAdap
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        val itemAtual = lista[position]
 //        holder.notaTxt.text = itemAtual.nota
-        holder.bind(lista[position])
+        lista.value?.get(position)?.let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int {
-        return lista.size
+        return lista.value?.size!!
     }
+    // FIXME: 21/07/2021 troquei os list por livedata
 
     class ViewHolder(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Nota){

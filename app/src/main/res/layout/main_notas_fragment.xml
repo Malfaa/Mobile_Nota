@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -8,15 +9,49 @@
             type="com.example.notaapp.ui.MainNotasViewModel" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/MainNotasFragment"
         tools:context=".ui.MainNotasFragment">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
+        <EditText
+            android:id="@+id/notaTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="@dimen/nota_dimen"
+            android:ems="10"
+            android:hint="@string/nota"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/notarRecycler"
+            app:layout_constraintStart_toStartOf="@+id/notarRecycler"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+        <Button
+            android:id="@+id/adcBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/nota_dimen"
+            android:layout_marginLeft="@dimen/nota_dimen"
+            android:layout_marginEnd="@dimen/nota_dimen"
+            android:layout_marginRight="@dimen/nota_dimen"
+            android:text="@string/adcNota"
+            app:layout_constraintBaseline_toBaselineOf="@+id/notaTexto"
+            app:layout_constraintEnd_toEndOf="@+id/notarRecycler"
+            app:layout_constraintStart_toEndOf="@+id/notaTexto" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notarRecycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/nota_dimen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adcBtn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
