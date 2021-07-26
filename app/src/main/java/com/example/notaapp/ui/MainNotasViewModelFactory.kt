@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.notaapp.room.NotaDao
+import com.example.notaapp.room.NotaDatabase
 
 class MainNotasViewModelFactory(private val dataSource: NotaDao, private val application: Application): ViewModelProvider.Factory {
     @Suppress("unchecked_cast")

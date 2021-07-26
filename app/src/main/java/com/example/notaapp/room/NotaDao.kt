@@ -1,10 +1,7 @@
 package com.example.notaapp.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface NotaDao {
@@ -12,7 +9,7 @@ interface NotaDao {
     @Query("SELECT * FROM notas")
     fun retornarNotas(): LiveData<List<Nota>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun inserir(nota:Nota)
 
     @Delete

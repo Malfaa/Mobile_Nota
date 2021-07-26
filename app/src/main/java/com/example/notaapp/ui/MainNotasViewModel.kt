@@ -2,9 +2,12 @@ package com.example.notaapp.ui
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.notaapp.room.Nota
 import com.example.notaapp.room.NotaDao
+import com.example.notaapp.room.NotaDatabase
+import com.example.notaapp.room.NotaRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -16,18 +19,11 @@ class MainNotasViewModel(val database: NotaDao, application: Application) : View
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private lateinit var lista: LiveData<List<Nota>>
+    private val _dataList = MutableLiveData<List<Nota>>()
+    val dataList : LiveData<List<Nota>> = _dataList
 
-//    private val _onClick = MutableLiveData<Boolean>(false)
-//    val onClick : MutableLiveData<Boolean>
-//        get() = _onClick
-//    fun enviandoNota(){
-//        _onClick.value = true
-//    }
-//
-//    fun fechandoNota(){
-//        _onClick.value = false
-//    }
+    private lateinit var repositorio:NotaRepository
+
 
     fun adicionandoDatabase(nota: Nota){
         uiScope.launch {
@@ -41,11 +37,9 @@ class MainNotasViewModel(val database: NotaDao, application: Application) : View
         }
     }
 
-    fun retornandoDatabase(): LiveData<List<Nota>>{
-        uiScope.launch {
-            lista = database.retornarNotas()
-        }
-        return lista
+    fun data() = uiScope.launch {
+        val list = repositorio.getDataFromDatabase()
+        _dataList.value = list.value
     }
 
 }

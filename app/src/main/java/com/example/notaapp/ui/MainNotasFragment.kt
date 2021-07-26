@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notaapp.R
@@ -30,6 +31,8 @@ class MainNotasFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_notas_fragment, container, false)
+
+        viewModel.data()
 
         return binding.root
     }
@@ -61,8 +64,11 @@ class MainNotasFragment : Fragment() {
         manager= LinearLayoutManager(context)
 
         binding.notarRecycler.apply {
-            adapter = MainAdapter(viewModel.retornandoDatabase())
-            layoutManager = manager
+            viewModel.dataList.observe(viewLifecycleOwner, {
+                adapter = MainAdapter(viewModel.dataList)
+                layoutManager = manager
+            })
+
         }
     }
 
