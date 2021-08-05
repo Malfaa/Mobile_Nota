@@ -37,11 +37,7 @@ class MainAdapter (private val lista: LiveData<List<Nota>>): RecyclerView.Adapte
 
     class ViewHolder(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Nota){
-            binding.notaTexto.setText(item.nota)
+            binding.notaTexto.text = item.nota
         }
-
-
     }
 }
-
-

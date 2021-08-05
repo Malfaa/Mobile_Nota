@@ -22,7 +22,7 @@ class MainNotasViewModel(val database: NotaDao, application: Application) : View
     private val _dataList = MutableLiveData<List<Nota>>()
     val dataList : LiveData<List<Nota>> = _dataList
 
-    private lateinit var repositorio:NotaRepository
+    private var repositorio:NotaRepository = NotaRepository(database)
 
 
     fun adicionandoDatabase(nota: Nota){
