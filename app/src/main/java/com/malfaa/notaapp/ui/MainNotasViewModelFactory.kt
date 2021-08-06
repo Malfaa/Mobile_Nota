@@ -1,10 +1,9 @@
-package com.example.notaapp.ui
+package com.malfaa.notaapp.ui
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.notaapp.room.NotaDao
-import com.example.notaapp.room.NotaDatabase
+import com.malfaa.notaapp.room.NotaDao
 
 class MainNotasViewModelFactory(private val dataSource: NotaDao, private val application: Application): ViewModelProvider.Factory {
     @Suppress("unchecked_cast")

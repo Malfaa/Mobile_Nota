@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/MainNotasFragment"
-        android:name="com.example.notaapp.ui.MainNotasFragment"
+        android:name="com.malfaa.notaapp.ui.MainNotasFragment"
         android:label="@string/notas"
         tools:layout="@layout/main_notas_fragment"/>
 </navigation>

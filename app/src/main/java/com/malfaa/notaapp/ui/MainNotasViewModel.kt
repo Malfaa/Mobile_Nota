@@ -1,13 +1,12 @@
-package com.example.notaapp.ui
+package com.malfaa.notaapp.ui
 
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.notaapp.room.Nota
-import com.example.notaapp.room.NotaDao
-import com.example.notaapp.room.NotaDatabase
-import com.example.notaapp.room.NotaRepository
+import com.malfaa.notaapp.room.Nota
+import com.malfaa.notaapp.room.NotaDao
+import com.malfaa.notaapp.room.NotaRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

@@ -1,9 +1,7 @@
-package com.example.notaapp
+package com.malfaa.notaapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import com.example.notaapp.ui.MainNotasFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="itemLista"
-            type="com.example.notaapp.room.Nota" />
+            name="item"
+            type="com.malfaa.notaapp.room.Nota" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,8 +22,7 @@
             android:layout_marginLeft="@dimen/nota_dimen"
             android:layout_marginTop="@dimen/nota_dimen"
             android:layout_marginBottom="@dimen/nota_dimen"
-            android:text="@{itemLista.nota
-            ]"
+            app:nota="@{item.nota}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

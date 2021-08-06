@@ -1,4 +1,4 @@
-package com.example.notaapp.room
+package com.malfaa.notaapp.room
 
 import android.content.Context
 import androidx.room.Database

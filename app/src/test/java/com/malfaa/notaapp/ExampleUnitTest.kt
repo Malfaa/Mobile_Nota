@@ -1,4 +1,4 @@
-package com.example.notaapp
+package com.malfaa.notaapp
 
 import org.junit.Test
 

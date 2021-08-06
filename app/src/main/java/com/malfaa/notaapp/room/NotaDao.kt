@@ -1,4 +1,4 @@
-package com.example.notaapp.room
+package com.malfaa.notaapp.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

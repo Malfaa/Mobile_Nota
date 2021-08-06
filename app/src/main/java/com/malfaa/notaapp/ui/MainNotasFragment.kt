@@ -1,4 +1,4 @@
-package com.example.notaapp.ui
+package com.malfaa.notaapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notaapp.R
-import com.example.notaapp.databinding.MainNotasFragmentBinding
-import com.example.notaapp.room.Nota
-import com.example.notaapp.room.NotaDatabase
+import com.malfaa.notaapp.R
+import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
+import com.malfaa.notaapp.room.Nota
+import com.malfaa.notaapp.room.NotaDatabase
 
 class MainNotasFragment : Fragment() {
 
