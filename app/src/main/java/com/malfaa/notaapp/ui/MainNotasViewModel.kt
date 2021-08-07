@@ -21,6 +21,8 @@ class MainNotasViewModel(val database: NotaDao, application: Application) : View
     private val _dataList = MutableLiveData<List<Nota>>()
     val dataList : LiveData<List<Nota>> = _dataList
 
+    val dataSet = database.retornarNotas()
+
     private var repositorio:NotaRepository = NotaRepository(database)
 
 
@@ -36,9 +38,9 @@ class MainNotasViewModel(val database: NotaDao, application: Application) : View
         }
     }
 
-    fun data() = uiScope.launch {
-        val list = repositorio.getDataFromDatabase()
-        _dataList.value = list.value
-    }
+//    fun data() = uiScope.launch {
+//        val list = repositorio.getDataFromDatabase()
+//        _dataList.value = list.value
+//    }
 
 }

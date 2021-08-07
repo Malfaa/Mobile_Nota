@@ -29,7 +29,25 @@ class MainNotasFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_notas_fragment, container, false)
+        val application = requireNotNull(this.activity).application
+        val dataSource = NotaDatabase.getDatabase(application).notaDao()
+        val viewModelFactory = MainNotasViewModelFactory(dataSource, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainNotasViewModel::class.java)
 
+        //Recycler
+
+        binding.adcBtn.setOnClickListener {
+            viewModel.adicionandoDatabase(Nota(binding.notaTexto.toString()))
+            binding.notaTexto.setText("")
+        }
+        val adapter = MainAdapter()
+        binding.notaRecycler.adapter = adapter
+
+        viewModel.dataSet.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
         return binding.root
     }
 
@@ -37,28 +55,6 @@ class MainNotasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val application = requireNotNull(this.activity).application
-        val dataSource = NotaDatabase.getDatabase(application).notaDao()
-        val viewModelFactory = MainNotasViewModelFactory(dataSource, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainNotasViewModel::class.java)
 
-        viewModel.data()
-
-        binding.adcBtn.setOnClickListener {
-            viewModel.adicionandoDatabase(Nota(binding.notaTexto.toString()))
-            binding.notaTexto.setText("")
-        }
-
-        // TODO: 21/07/2021 recyclerview
-        manager= LinearLayoutManager(context)
-
-//        binding.notarRecycler.apply {
-//            viewModel.dataList.observe(viewLifecycleOwner, {
-//                adapter = MainAdapter(viewModel.dataList)
-//                layoutManager = manager
-//            })
-//
-//        }
     }
-
 }

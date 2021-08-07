@@ -9,13 +9,14 @@ import com.malfaa.notaapp.databinding.NotaBinding
 import com.malfaa.notaapp.room.Nota
 
 
-class MainAdapter() : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
+class MainAdapter : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
 
 
     class ViewHolder private constructor(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item : Nota){
-            binding.
+            binding.item = item
+            binding.executePendingBindings()
         }
 
         companion object {
@@ -32,7 +33,7 @@ class MainAdapter() : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback
             return oldItem.notaId == newItem.notaId
         }
 
-        override fun areContentsTheSame(oldItem: Nota, newItem: Nota): Boolean {
+        override fun areContentsTheSame(oldItem: Nota , newItem: Nota): Boolean {
             return oldItem == newItem
         }
 
@@ -46,6 +47,5 @@ class MainAdapter() : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback
         val item = getItem(position)
         holder.bind(item)
     }
-
 
 }

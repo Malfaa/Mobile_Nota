@@ -27,8 +27,9 @@
             android:hint="@string/nota"
             android:importantForAutofill="no"
             android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/notarRecycler"
-            app:layout_constraintStart_toStartOf="@+id/notarRecycler"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/notaRecycler"
+            app:layout_constraintStart_toStartOf="@+id/notaRecycler"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -40,12 +41,13 @@
             android:layout_marginEnd="@dimen/nota_dimen"
             android:layout_marginRight="@dimen/nota_dimen"
             android:text="@string/adcNota"
+            android:textColor="#616161"
             app:layout_constraintBaseline_toBaselineOf="@+id/notaTexto"
-            app:layout_constraintEnd_toEndOf="@+id/notarRecycler"
+            app:layout_constraintEnd_toEndOf="@+id/notaRecycler"
             app:layout_constraintStart_toEndOf="@+id/notaTexto" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notarRecycler"
+            android:id="@+id/notaRecycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/nota_dimen"
