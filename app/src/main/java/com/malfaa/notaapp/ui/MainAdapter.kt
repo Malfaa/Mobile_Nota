@@ -36,7 +36,6 @@ class MainAdapter : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()
         override fun areContentsTheSame(oldItem: Nota , newItem: Nota): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,6 +45,9 @@ class MainAdapter : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+//        holder.binding.deletarNota.setOnClickListener{
+//            holder.binding.
+//        }
     }
 
 }

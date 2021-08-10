@@ -28,18 +28,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/deletarNota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/nota_dimen"
             android:layout_marginEnd="@dimen/nota_dimen"
             android:layout_marginRight="@dimen/nota_dimen"
             android:layout_marginBottom="@dimen/nota_dimen"
+            android:contentDescription="@string/delete_bin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_delete_24"
-            tools:ignore="VectorDrawableCompat"
-            android:contentDescription="@string/delete_bin" />
+            tools:ignore="VectorDrawableCompat" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

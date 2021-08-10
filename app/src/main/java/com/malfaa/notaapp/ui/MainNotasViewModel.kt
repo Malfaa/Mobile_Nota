@@ -12,35 +12,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-//troquei aqui val repositorio -> database: NotaDao
-class MainNotasViewModel(val database: NotaDao, application: Application) : ViewModel() {
+class MainNotasViewModel(val database: NotaDao) : ViewModel() {
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private val _dataList = MutableLiveData<List<Nota>>()
-    val dataList : LiveData<List<Nota>> = _dataList
-
     val dataSet = database.retornarNotas()
 
-    private var repositorio:NotaRepository = NotaRepository(database)
-
-
-    fun adicionandoDatabase(nota: Nota){
+    fun adicionandoAoDatabase(nota: Nota){
         uiScope.launch {
             database.inserir(nota)
         }
     }
 
-    fun deletandoDatabase(nota:Nota){
+    fun deletandoDoDatabase(nota:Nota){
         uiScope.launch {
             database.deletar(nota)
         }
     }
-
-//    fun data() = uiScope.launch {
-//        val list = repositorio.getDataFromDatabase()
-//        _dataList.value = list.value
-//    }
 
 }
