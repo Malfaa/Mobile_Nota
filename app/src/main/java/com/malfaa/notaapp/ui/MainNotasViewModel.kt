@@ -1,12 +1,9 @@
 package com.malfaa.notaapp.ui
 
-import android.app.Application
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDao
-import com.malfaa.notaapp.room.NotaRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,13 +16,19 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
 
     val dataSet = database.retornarNotas()
 
+    lateinit var deleteNota: Nota
+
+    private val _teste = MutableLiveData<Boolean>()
+    val teste: MutableLiveData<Boolean>
+    get() = _teste
+
     fun adicionandoAoDatabase(nota: Nota){
         uiScope.launch {
             database.inserir(nota)
         }
     }
 
-    fun deletandoDoDatabase(nota:Nota){
+    fun deletandoDoDatabase(nota: Nota){
         uiScope.launch {
             database.deletar(nota)
         }

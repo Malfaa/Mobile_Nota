@@ -1,6 +1,7 @@
 package com.malfaa.notaapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,8 +43,8 @@ class MainNotasFragment : Fragment() {
 
         binding.adcBtn.setOnClickListener {
             viewModel.adicionandoAoDatabase(Nota(binding.notaTexto.text.toString()))
-            Toast.makeText(context, "${binding.notaTexto.text}" ,Toast.LENGTH_LONG).show() // TODO: 10/08/2021 arrumar número máx. de caracteres por linha
-            binding.notaTexto.setText("")                                                       // TODO: 10/08/2021 arrumar ordem de display do recyclerview
+            Toast.makeText(context, "${binding.notaTexto.text}" ,Toast.LENGTH_LONG).show()
+            binding.notaTexto.setText("") // TODO: 10/08/2021 arrumar ordem de display do recyclerview
         }
 
         val adapter = MainAdapter()
@@ -55,5 +56,9 @@ class MainNotasFragment : Fragment() {
             }
         })
 
+        viewModel.teste.observe(viewLifecycleOwner,{
+            Log.d("Deletado:", "Deu!")
+            viewModel.deletandoDoDatabase(Nota(viewModel.deleteNota.nota))
+        })
     }
 }

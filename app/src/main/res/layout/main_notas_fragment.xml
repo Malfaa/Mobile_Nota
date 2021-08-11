@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/MainNotasFragment"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
         tools:context=".ui.MainNotasFragment">
 
         <EditText
@@ -26,6 +28,9 @@
             android:ems="10"
             android:hint="@string/nota"
             android:minHeight="48dp"
+            android:inputType="text"
+            android:maxLines="2"
+            android:maxLength="12"
             app:layout_constraintBottom_toTopOf="@+id/notaRecycler"
             app:layout_constraintStart_toStartOf="@+id/notaRecycler"
             app:layout_constraintTop_toTopOf="parent"

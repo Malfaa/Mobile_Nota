@@ -6,5 +6,5 @@ class NotaRepository (private val dao: NotaDao){
 
     fun getDataFromDatabase():LiveData<List<Nota>> = dao.retornarNotas()
 
-    suspend fun salvandoDataNoDatabase(nota: Nota) = dao.inserir(nota)
+    suspend fun deletandoNota(nota: Nota) = dao.deletar(nota)
 }

@@ -13,6 +13,9 @@ interface NotaDao {
     suspend fun inserir(nota:Nota)
 
     @Delete
-    suspend fun deletar(nota:Nota)
+    suspend fun deletar(nota: Nota)
+
+    @Query("DELETE FROM notas WHERE nota = :nota")
+    suspend fun deletarD(nota: String)
 
 }
