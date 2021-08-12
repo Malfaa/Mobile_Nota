@@ -15,7 +15,4 @@ interface NotaDao {
     @Delete
     suspend fun deletar(nota: Nota)
 
-    @Query("DELETE FROM notas WHERE nota = :nota")
-    suspend fun deletarD(nota: String)
-
 }

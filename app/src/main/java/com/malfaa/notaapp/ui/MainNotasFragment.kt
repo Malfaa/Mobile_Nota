@@ -13,12 +13,12 @@ import com.malfaa.notaapp.R
 import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDatabase
+import androidx.recyclerview.widget.LinearLayoutManager
+
+
+
 
 class MainNotasFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MainNotasFragment()
-    }
 
     private lateinit var viewModel: MainNotasViewModel
     private lateinit var binding: MainNotasFragmentBinding
@@ -44,21 +44,19 @@ class MainNotasFragment : Fragment() {
         binding.adcBtn.setOnClickListener {
             viewModel.adicionandoAoDatabase(Nota(binding.notaTexto.text.toString()))
             Toast.makeText(context, "${binding.notaTexto.text}" ,Toast.LENGTH_LONG).show()
-            binding.notaTexto.setText("") // TODO: 10/08/2021 arrumar ordem de display do recyclerview
+            binding.notaTexto.setText("")
         }
 
-        val adapter = MainAdapter()
+        val adapter = context?.let { MainAdapter(it) }
         binding.notaRecycler.adapter = adapter
+
 
         viewModel.dataSet.observe(viewLifecycleOwner, {
             it?.let {
-                adapter.submitList(it)
+                adapter?.submitList(it)
             }
-        })
-
-        viewModel.teste.observe(viewLifecycleOwner,{
-            Log.d("Deletado:", "Deu!")
-            viewModel.deletandoDoDatabase(Nota(viewModel.deleteNota.nota))
         })
     }
 }
+// TODO: 12/08/2021 Arquivar todos(?) Swipe
+// TODO: 12/08/2021 Editar notas existentes

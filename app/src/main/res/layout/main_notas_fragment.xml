@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/MainNotasFragment"
-        android:focusable="false"
+        android:focusable="true"
         android:focusableInTouchMode="true"
         tools:context=".ui.MainNotasFragment">
 
@@ -60,6 +60,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/adcBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/adcBtn"
+            app:stackFromEnd="true"
+            app:reverseLayout="true"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

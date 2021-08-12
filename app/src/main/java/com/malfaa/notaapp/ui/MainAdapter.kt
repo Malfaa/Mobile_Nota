@@ -1,8 +1,10 @@
 package com.malfaa.notaapp.ui
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +12,10 @@ import com.malfaa.notaapp.R
 import com.malfaa.notaapp.databinding.NotaBinding
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDatabase
+import java.lang.Exception
 
 
-class MainAdapter : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
+class MainAdapter(val context: Context) : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
 
 
     class ViewHolder private constructor(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root) {
@@ -46,31 +49,21 @@ class MainAdapter : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val dataSource = NotaDatabase.getDatabase(context).notaDao()
 
         val item = getItem(position)
         holder.bind(item)
-        // TODO: 10/08/2021 consertar o apagar do database
-        // FIXME: 11/08/2021 problema é que ele não ta conseguindo referenciar para o viewmodel
-        // FIXME: 11/08/2021 problema está neste campo do onBindViewHolder
+
         holder.binding.deletarNota.setOnClickListener{
-                Log.d("Info De Deletar", item.nota)
-                MainNotasViewModel(dataSource).deleteNota = item
-                MainNotasViewModel(dataSource).teste.value =  true
-
-            // FIXME: 11/08/2021 referenciar corretamente ao viewmodel 
-        }
-    }
-
-}
-
-/*
-        val context = MainNotasFragment.newInstance().requireActivity()
-        val dataSource = NotaDatabase.getDatabase(context).notaDao()
-
-holder.binding.deletarNota.setOnClickListener{
-            Log.d("Info De Deletar", item.nota)
-
-            if (dataSource != null) {
+            try {
+                Log.d("Info Ao Deletar", item.nota)
                 MainNotasViewModel(dataSource).deletandoDoDatabase(item)
+            }catch (e: Exception){
+                Log.d("Erro ao deletar", e.toString())
             }
-        }*/
+        }
+
+        /*
+        * */
+    }
+}

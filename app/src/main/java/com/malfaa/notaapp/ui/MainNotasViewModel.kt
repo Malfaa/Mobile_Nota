@@ -1,6 +1,5 @@
 package com.malfaa.notaapp.ui
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDao
@@ -15,12 +14,6 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     val dataSet = database.retornarNotas()
-
-    lateinit var deleteNota: Nota
-
-    private val _teste = MutableLiveData<Boolean>()
-    val teste: MutableLiveData<Boolean>
-    get() = _teste
 
     fun adicionandoAoDatabase(nota: Nota){
         uiScope.launch {
