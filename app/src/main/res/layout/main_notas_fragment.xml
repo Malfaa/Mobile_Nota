@@ -50,6 +50,20 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/notaTexto"
             app:layout_constraintEnd_toEndOf="@+id/notaRecycler"
             app:layout_constraintStart_toEndOf="@+id/notaTexto" />
+        <Button
+            android:id="@+id/edtBtn"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/nota_dimen"
+            android:layout_marginLeft="@dimen/nota_dimen"
+            android:layout_marginEnd="@dimen/nota_dimen"
+            android:layout_marginRight="@dimen/nota_dimen"
+            android:text="@string/edtNota"
+            android:textColor="#616161"
+            app:layout_constraintBaseline_toBaselineOf="@+id/notaTexto"
+            app:layout_constraintEnd_toEndOf="@+id/notaRecycler"
+            app:layout_constraintStart_toEndOf="@+id/notaTexto" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notaRecycler"

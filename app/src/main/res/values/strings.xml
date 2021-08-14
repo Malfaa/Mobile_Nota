@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">NotaApp</string>
+    <string name="app_name">Nota Rápida</string>
     <string name="delete_bin">Deletar Nota</string>
     <string name="nome">Nome</string>
-    <string name="adcNota">+ Novo</string>
+    <string name="adcNota">Adicionar</string>
     <string name="notas">Notas</string>
     <string name="nota">Nota</string>
+    <string name="edtNota">Editar</string>
 
 </resources>

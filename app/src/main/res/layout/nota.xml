@@ -7,9 +7,13 @@
         <variable
             name="item"
             type="com.malfaa.notaapp.room.Nota" />
+        <variable
+            name="viewModel"
+            type="com.malfaa.notaapp.ui.MainNotasViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"

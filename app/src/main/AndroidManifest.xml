@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NotaApp">
-        <activity android:name="com.malfaa.notaapp.MainActivity">
+        <activity
+            android:name="com.malfaa.notaapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

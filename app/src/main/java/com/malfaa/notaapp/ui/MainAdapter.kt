@@ -4,18 +4,20 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Toast
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.malfaa.notaapp.R
+import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
 import com.malfaa.notaapp.databinding.NotaBinding
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDatabase
-import java.lang.Exception
 
 
 class MainAdapter(val context: Context) : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
+     val dataSource = NotaDatabase.getDatabase(context).notaDao()
 
 
     class ViewHolder private constructor(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root) {
@@ -49,21 +51,31 @@ class MainAdapter(val context: Context) : ListAdapter<Nota, MainAdapter.ViewHold
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val dataSource = NotaDatabase.getDatabase(context).notaDao()
-
         val item = getItem(position)
         holder.bind(item)
 
         holder.binding.deletarNota.setOnClickListener{
             try {
                 Log.d("Info Ao Deletar", item.nota)
-                MainNotasViewModel(dataSource).deletandoDoDatabase(item)
+                MainNotasViewModel(dataSource).deletandoNota(item)
+                Toast.makeText(context, "Deletado", Toast.LENGTH_LONG).show()
             }catch (e: Exception){
                 Log.d("Erro ao deletar", e.toString())
             }
         }
 
-        /*
-        * */
+        holder.binding.nota.setOnLongClickListener{
+            try {
+                Log.d("Info", "Clicado - ${item.nota}")
+                MainNotasViewModel(dataSource).trocandoBotoes()
+
+
+            }catch (e: Exception){
+                Log.d("Erro ao editar", e.toString())
+            }
+            true
+        }
+
     }
 }
+
