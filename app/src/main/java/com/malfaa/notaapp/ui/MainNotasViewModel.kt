@@ -1,6 +1,7 @@
 package com.malfaa.notaapp.ui
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.malfaa.notaapp.room.Nota
@@ -17,8 +18,8 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
 
     val dataSet = database.retornarNotas()
 
-    private val _teste = MutableLiveData(false)
-    val teste : MutableLiveData<Boolean?>
+    private val _teste = MutableLiveData<Boolean>()
+    val teste : LiveData<Boolean>
         get() = _teste
 
     fun adicionandoNota(nota: Nota){
@@ -39,10 +40,12 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
         }
     }
 
-    fun trocandoBotoes(){
-        Log.d("Dif", "Teste passa: ${_teste.value}" )
+    fun validaTeste(){
         _teste.value = true
-        Log.d("Dif", "Teste passa: ${_teste.value}" )
+    }
+
+    fun reverteTeste(){
+        _teste.value = false
     }
 
 }

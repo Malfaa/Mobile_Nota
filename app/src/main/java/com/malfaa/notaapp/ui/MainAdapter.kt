@@ -5,12 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
 import com.malfaa.notaapp.databinding.NotaBinding
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDatabase
@@ -63,18 +60,18 @@ class MainAdapter(val context: Context) : ListAdapter<Nota, MainAdapter.ViewHold
                 Log.d("Erro ao deletar", e.toString())
             }
         }
-
-        holder.binding.nota.setOnLongClickListener{
-            try {
-                Log.d("Info", "Clicado - ${item.nota}")
-                MainNotasViewModel(dataSource).trocandoBotoes()
-
-
-            }catch (e: Exception){
-                Log.d("Erro ao editar", e.toString())
-            }
-            true
-        }
+// FIXME: 17/08/2021 valor não altera para o observer, logo, o objetivo é tentar fazer com que o adapter chame a função do validaTeste()
+//        holder.binding.nota.setOnLongClickListener{
+//            try {
+//                Log.d("Info", "Clicado - ${item.nota}")
+//                it?.let {
+//                    MainNotasViewModel(dataSource).validaTeste()
+//                }
+//            }catch (e: Exception){
+//                Log.d("Erro ao editar", e.toString())
+//            }
+//            true
+//        }
 
     }
 }
