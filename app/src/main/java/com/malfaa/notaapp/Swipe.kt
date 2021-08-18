@@ -1,4 +1,4 @@
-package com.malfaa.notaapp.ui
+package com.malfaa.notaapp
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView

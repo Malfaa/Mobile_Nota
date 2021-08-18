@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class MainNotasViewModel(val database: NotaDao) : ViewModel() {
 
@@ -19,8 +16,9 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
     val dataSet = database.retornarNotas()
 
     private val _teste = MutableLiveData<Boolean>()
-    val teste : LiveData<Boolean>
+    val teste : MutableLiveData<Boolean>
         get() = _teste
+
 
     fun adicionandoNota(nota: Nota){
         uiScope.launch {
@@ -41,6 +39,7 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
     }
 
     fun validaTeste(){
+        //Log.d("ValidaTeste PRÉ ->", "${teste.value}")
         _teste.value = true
     }
 

@@ -13,16 +13,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.malfaa.notaapp.R
 import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
-import com.malfaa.notaapp.databinding.NotaBinding
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDatabase
+import com.malfaa.notaapp.databinding.NotaBinding as NotaBinding1
 
 
 class MainNotasFragment : Fragment() {
 
     private lateinit var viewModel: MainNotasViewModel
     private lateinit var binding: MainNotasFragmentBinding
-    private lateinit var bindingNota: NotaBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,9 +40,6 @@ class MainNotasFragment : Fragment() {
         val viewModelFactory = MainNotasViewModelFactory(dataSource)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainNotasViewModel::class.java)
 
-        binding.viewModel = viewModel
-
-        binding.lifecycleOwner = this
 
         val adapter = context?.let { MainAdapter(it) }
         binding.notaRecycler.adapter = adapter
@@ -55,28 +51,20 @@ class MainNotasFragment : Fragment() {
                 Toast.makeText(context, "Adicionado" ,Toast.LENGTH_LONG).show()
                 binding.notaTexto.setText("")
             }else{
+                //Log.d("ValidaTeste FINAL 1 ->", "${viewModel.teste.value}")
+                viewModel.validaTeste()
                 Toast.makeText(context, "Insira algum caractére!" ,Toast.LENGTH_LONG).show()
             }
 
         }
+
         binding.edtBtn.setOnClickListener{
             viewModel.atualizandoNota(Nota(binding.notaTexto.text.toString()))
             Toast.makeText(context, "Editado" ,Toast.LENGTH_LONG).show()
             binding.notaTexto.setText("")
-            binding.edtBtn.isGone
-            binding.adcBtn.isVisible
+            viewModel.reverteTeste()
         }
 
-
-        bindingNota.nota.setOnLongClickListener{
-            try {
-                Log.d("Info", "Clicado - ${bindingNota.item?.nota}")
-                viewModel.validaTeste()
-            }catch (e: Exception){
-                Log.d("Erro ao editar", e.toString())
-            }
-            true
-        }
 
         viewModel.teste.observe(viewLifecycleOwner, {
                 teste ->
@@ -84,40 +72,18 @@ class MainNotasFragment : Fragment() {
                 Log.d("Deu", "Teste Observer Passou")
                 binding.adcBtn.isGone
                 binding.edtBtn.isVisible
-                viewModel.reverteTeste()
             }else{
-                Log.d("Error ->", "Retornando null")
+                binding.edtBtn.isGone
+                binding.adcBtn.isVisible
             }
         })
 
-        // FIXME: 17/08/2021 Problema é, o observer não ta sendo chamado pq não está tendo alterações! Ele está sempre sendo null, por isso que não está sendo chamaado, o que precisa mudar é como atribuir valor a ele, no caso o val teste
 
-            viewModel.dataSet.observe(viewLifecycleOwner, {
-                it?.let {
-                    adapter?.submitList(it)
-                    Log.d("teste", "${viewModel.teste.value}")
-                }
-            })
-
-
-//        val gesto = object : Swipe() {
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//                super.onSwiped(viewHolder, direction)
-//
-//                when(direction){
-//                    ItemTouchHelper.LEFT -> {
-//                        binding.adcBtn.isGone
-//                        binding.edtBtn.isVisible
-//                    }
-//                    ItemTouchHelper.RIGHT -> {
-//                        binding.adcBtn.isGone
-//                        binding.edtBtn.isVisible
-//                    }
-//                }
-//            }
-//        }
-//
-//        val swipeHelper = ItemTouchHelper(gesto)
-//        swipeHelper.attachToRecyclerView(binding.notaRecycler)
+        viewModel.dataSet.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter?.submitList(it)
+                Log.d("teste", "${viewModel.teste.value}")
+            }
+        })
     }
 }

@@ -12,10 +12,8 @@ import com.malfaa.notaapp.databinding.NotaBinding
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDatabase
 
-
-class MainAdapter(val context: Context) : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
-     val dataSource = NotaDatabase.getDatabase(context).notaDao()
-
+class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
+     private val dataSource = NotaDatabase.getDatabase(context).notaDao()
 
     class ViewHolder private constructor(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -51,6 +49,8 @@ class MainAdapter(val context: Context) : ListAdapter<Nota, MainAdapter.ViewHold
         val item = getItem(position)
         holder.bind(item)
 
+//bp
+        //FUYNCIAINSA
         holder.binding.deletarNota.setOnClickListener{
             try {
                 Log.d("Info Ao Deletar", item.nota)
@@ -60,19 +60,24 @@ class MainAdapter(val context: Context) : ListAdapter<Nota, MainAdapter.ViewHold
                 Log.d("Erro ao deletar", e.toString())
             }
         }
-// FIXME: 17/08/2021 valor não altera para o observer, logo, o objetivo é tentar fazer com que o adapter chame a função do validaTeste()
-//        holder.binding.nota.setOnLongClickListener{
-//            try {
-//                Log.d("Info", "Clicado - ${item.nota}")
-//                it?.let {
-//                    MainNotasViewModel(dataSource).validaTeste()
-//                }
-//            }catch (e: Exception){
-//                Log.d("Erro ao editar", e.toString())
-//            }
-//            true
-//        }
+
+        holder.binding.nota.setOnLongClickListener{
+            try {
+                Log.d("Info", "Clicado - ${item.nota}")
+
+                Log.d("Teste PRÉ ->", "${MainNotasViewModel(dataSource).teste.value}")
+                MainNotasViewModel(dataSource).validaTeste()
+                Log.d("Teste PÓS ->", "${MainNotasViewModel(dataSource).teste.value}")
+
+            }catch (e: Exception){
+                Log.d("Erro ao editar", e.toString())
+            }
+            true
+        }
+// FIXME: 17/08/2021 o valor que é colocado no validaTeste() não está mudando a váriavel teste.
+//  Pelo fragmento colocando em algum botão ele funciona normalmente, o porquê do adapter não
+//  realizar a chamada eu não sei. Um metódo que funciona é colocar o editar e talvez o deletar juntos
+
 
     }
 }
-
