@@ -77,7 +77,7 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
 // FIXME: 17/08/2021 o valor que é colocado no validaTeste() não está mudando a váriavel teste.
 //  Pelo fragmento colocando em algum botão ele funciona normalmente, o porquê do adapter não
 //  realizar a chamada eu não sei. Um metódo que funciona é colocar o editar e talvez o deletar juntos
-
+//Testando
 
     }
 }
