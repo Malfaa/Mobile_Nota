@@ -15,11 +15,6 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
 
     val dataSet = database.retornarNotas()
 
-    private val _teste = MutableLiveData<Boolean>()
-    val teste : MutableLiveData<Boolean>
-        get() = _teste
-
-
     fun adicionandoNota(nota: Nota){
         uiScope.launch {
             database.inserir(nota)
@@ -36,15 +31,6 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
         uiScope.launch {
             database.atualizar(nota)
         }
-    }
-
-    fun validaTeste(){
-        //Log.d("ValidaTeste PRÉ ->", "${teste.value}")
-        _teste.value = true
-    }
-
-    fun reverteTeste(){
-        _teste.value = false
     }
 
 }

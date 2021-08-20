@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,9 @@ import com.malfaa.notaapp.room.NotaDatabase
 
 class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
      private val dataSource = NotaDatabase.getDatabase(context).notaDao()
+
+    val editTeste = MutableLiveData<Boolean>()
+    val notaAEditar = MutableLiveData<Nota>()
 
     class ViewHolder private constructor(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -49,8 +53,6 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
         val item = getItem(position)
         holder.bind(item)
 
-//bp
-        //FUYNCIAINSA
         holder.binding.deletarNota.setOnClickListener{
             try {
                 Log.d("Info Ao Deletar", item.nota)
@@ -64,20 +66,13 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
         holder.binding.nota.setOnLongClickListener{
             try {
                 Log.d("Info", "Clicado - ${item.nota}")
-
-                Log.d("Teste PRÉ ->", "${MainNotasViewModel(dataSource).teste.value}")
-                MainNotasViewModel(dataSource).validaTeste()
-                Log.d("Teste PÓS ->", "${MainNotasViewModel(dataSource).teste.value}")
-
+                Log.d("EDITTEST", editTeste.value.toString())
+                editTeste.value = true
+                notaAEditar.value = item
             }catch (e: Exception){
                 Log.d("Erro ao editar", e.toString())
             }
             true
         }
-// FIXME: 17/08/2021 o valor que é colocado no validaTeste() não está mudando a váriavel teste.
-//  Pelo fragmento colocando em algum botão ele funciona normalmente, o porquê do adapter não
-//  realizar a chamada eu não sei. Um metódo que funciona é colocar o editar e talvez o deletar juntos
-
-
     }
 }

@@ -1,13 +1,12 @@
 package com.malfaa.notaapp.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +14,6 @@ import com.malfaa.notaapp.R
 import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDatabase
-import com.malfaa.notaapp.databinding.NotaBinding as NotaBinding1
 
 
 class MainNotasFragment : Fragment() {
@@ -51,39 +49,46 @@ class MainNotasFragment : Fragment() {
                 Toast.makeText(context, "Adicionado" ,Toast.LENGTH_LONG).show()
                 binding.notaTexto.setText("")
             }else{
-                //Log.d("ValidaTeste FINAL 1 ->", "${viewModel.teste.value}")
-                viewModel.validaTeste()
-                Toast.makeText(context, "Insira algum caractére!" ,Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Insira algum caractére" ,Toast.LENGTH_LONG).show()
             }
 
         }
 
-        binding.edtBtn.setOnClickListener{
-            viewModel.atualizandoNota(Nota(binding.notaTexto.text.toString()))
-            Toast.makeText(context, "Editado" ,Toast.LENGTH_LONG).show()
-            binding.notaTexto.setText("")
-            viewModel.reverteTeste()
-        }
-
-
-        viewModel.teste.observe(viewLifecycleOwner, {
-                teste ->
-            if(teste) {
-                Log.d("Deu", "Teste Observer Passou")
-                binding.adcBtn.isGone
-                binding.edtBtn.isVisible
+        binding.edtBtn.setOnClickListener{ //
+            if(binding.notaTexto.text != viewModel.dataSet.value){ // mudei aqui
+                viewModel.atualizandoNota(Nota(binding.notaTexto.text.toString()))
+                Toast.makeText(context, "Editado" ,Toast.LENGTH_LONG).show()
+                binding.notaTexto.setText("")
             }else{
-                binding.edtBtn.isGone
-                binding.adcBtn.isVisible
+                adapter?.editTeste?.value = false
+                Toast.makeText(context, "Nada alterado" ,Toast.LENGTH_LONG).show()
             }
-        })
+        }
 
+        // TODO: 19/08/2021 Resolver o atualizar e mudar algumas coisas, assim projeto estará finalizado
+        adapter?.editTeste?.observe(viewLifecycleOwner, {
+            if (adapter.editTeste.value == true) {
+                binding.adcBtn.visibility = View.GONE
+                binding.edtBtn.visibility = View.VISIBLE
+                binding.MainNotasFragment.setBackgroundColor(Color.GRAY)
+                binding.notaTexto.setText(adapter.notaAEditar.value?.nota)
+            }
+            binding.MainNotasFragment.setOnClickListener {
+                binding.edtBtn.visibility = View.GONE
+                binding.adcBtn.visibility = View.VISIBLE
+                adapter.editTeste.value = false
+                binding.notaTexto.setText("")
+                binding.MainNotasFragment.setBackgroundColor(Color.WHITE)
+                Log.d("EditTeste", adapter.editTeste.value.toString())
+            }
+
+        })
 
         viewModel.dataSet.observe(viewLifecycleOwner, {
             it?.let {
                 adapter?.submitList(it)
-                Log.d("teste", "${viewModel.teste.value}")
             }
         })
     }
+
 }
