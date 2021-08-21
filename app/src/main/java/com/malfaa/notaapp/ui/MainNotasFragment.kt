@@ -48,6 +48,7 @@ class MainNotasFragment : Fragment() {
                 viewModel.adicionandoNota(Nota(binding.notaTexto.text.toString()))
                 Toast.makeText(context, "Adicionado" ,Toast.LENGTH_LONG).show()
                 binding.notaTexto.setText("")
+                binding.notaTexto.clearFocus()
             }else{
                 Toast.makeText(context, "Insira algum caractére" ,Toast.LENGTH_LONG).show()
             }
@@ -66,11 +67,12 @@ class MainNotasFragment : Fragment() {
         }
 
         // TODO: 19/08/2021 Resolver o atualizar e mudar algumas coisas, assim projeto estará finalizado
+        // FIXME: 19/08/2021 EditText está atrasado quando segurado a nota para EDITAR, talvez quando chamado o setText(), ele não é atualizado momentâneamente?
         adapter?.editTeste?.observe(viewLifecycleOwner, {
             if (adapter.editTeste.value == true) {
                 binding.adcBtn.visibility = View.GONE
                 binding.edtBtn.visibility = View.VISIBLE
-                binding.MainNotasFragment.setBackgroundColor(Color.GRAY)
+                binding.MainNotasFragment.setBackgroundColor(Color.parseColor("#cfcfcf"))
                 binding.notaTexto.setText(adapter.notaAEditar.value?.nota)
             }
             binding.MainNotasFragment.setOnClickListener {

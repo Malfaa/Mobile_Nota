@@ -66,9 +66,8 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
         holder.binding.nota.setOnLongClickListener{
             try {
                 Log.d("Info", "Clicado - ${item.nota}")
-                Log.d("EDITTEST", editTeste.value.toString())
-                editTeste.value = true
                 notaAEditar.value = item
+                editTeste.value = true
             }catch (e: Exception){
                 Log.d("Erro ao editar", e.toString())
             }

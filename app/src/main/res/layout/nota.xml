@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/nota_dimen"
             android:layout_marginTop="@dimen/nota_dimen"
             android:layout_marginBottom="@dimen/nota_dimen"
-            android:maxLength="30"
+            android:maxWidth="280dp"
             android:maxLines="3"
             app:setNota="@{item}"
             app:layout_constraintBottom_toBottomOf="parent"
