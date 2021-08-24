@@ -9,4 +9,3 @@ import com.malfaa.notaapp.room.Nota
 fun TextView.setNota(item: Nota){
     text =  item.nota
 }
-

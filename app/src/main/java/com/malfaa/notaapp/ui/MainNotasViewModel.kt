@@ -1,5 +1,6 @@
 package com.malfaa.notaapp.ui
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDao
@@ -32,5 +33,4 @@ class MainNotasViewModel(val database: NotaDao) : ViewModel() {
             database.atualizar(nota)
         }
     }
-
 }

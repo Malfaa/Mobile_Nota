@@ -17,7 +17,7 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
      private val dataSource = NotaDatabase.getDatabase(context).notaDao()
 
     val editTeste = MutableLiveData<Boolean>()
-    val notaAEditar = MutableLiveData<Nota>()
+    lateinit var notaAEditar:Nota
 
     class ViewHolder private constructor(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -66,7 +66,7 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
         holder.binding.nota.setOnLongClickListener{
             try {
                 Log.d("Info", "Clicado - ${item.nota}")
-                notaAEditar.value = item
+                notaAEditar = item //mudei aqui || notaAEdita
                 editTeste.value = true
             }catch (e: Exception){
                 Log.d("Erro ao editar", e.toString())

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.malfaa.notaapp.R
 import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
@@ -48,32 +49,39 @@ class MainNotasFragment : Fragment() {
                 viewModel.adicionandoNota(Nota(binding.notaTexto.text.toString()))
                 Toast.makeText(context, "Adicionado" ,Toast.LENGTH_LONG).show()
                 binding.notaTexto.setText("")
-                binding.notaTexto.clearFocus()
             }else{
                 Toast.makeText(context, "Insira algum caractére" ,Toast.LENGTH_LONG).show()
             }
-
         }
 
-        binding.edtBtn.setOnClickListener{ //
-            if(binding.notaTexto.text != viewModel.dataSet.value){ // mudei aqui
-                viewModel.atualizandoNota(Nota(binding.notaTexto.text.toString()))
+        binding.edtBtn.setOnClickListener{
+            if(binding.notaTexto.text.toString() != adapter?.notaAEditar?.nota){
+                adapter?.notaAEditar?.nota = binding.notaTexto.text.toString()
+
+                val novaNota = adapter!!.notaAEditar
+                viewModel.atualizandoNota(novaNota)
+
                 Toast.makeText(context, "Editado" ,Toast.LENGTH_LONG).show()
+                false.also { adapter.editTeste.value = it } //fixme alterado aqui
                 binding.notaTexto.setText("")
+                // FIXME: 23/08/2021 setar um refresher pra quando for alterado a nota
+                binding.notaTexto.clearFocus()
             }else{
-                adapter?.editTeste?.value = false
+                false.also { adapter.editTeste.value = it } //fixme alterado aqui
+                binding.notaTexto.clearFocus()
                 Toast.makeText(context, "Nada alterado" ,Toast.LENGTH_LONG).show()
             }
         }
 
-        // TODO: 19/08/2021 Resolver o atualizar e mudar algumas coisas, assim projeto estará finalizado
-        // FIXME: 19/08/2021 EditText está atrasado quando segurado a nota para EDITAR, talvez quando chamado o setText(), ele não é atualizado momentâneamente?
+        // TODO: 19/08/2021 RESOLVER PROBLEMA DE FOCO DO EDITTEXT E DE ATUALIZAR O REYCLERVIEW QUANDO EDITADO
         adapter?.editTeste?.observe(viewLifecycleOwner, {
             if (adapter.editTeste.value == true) {
                 binding.adcBtn.visibility = View.GONE
                 binding.edtBtn.visibility = View.VISIBLE
-                binding.MainNotasFragment.setBackgroundColor(Color.parseColor("#cfcfcf"))
-                binding.notaTexto.setText(adapter.notaAEditar.value?.nota)
+                binding.MainNotasFragment.setBackgroundColor(Color.parseColor("#fafafa"))
+                binding.notaTexto.setText(adapter.notaAEditar.nota)
+
+                // TODO: 23/08/2021 PARA TESTE binding.notaTexto.setNota(adapter.notaAEditar)
             }
             binding.MainNotasFragment.setOnClickListener {
                 binding.edtBtn.visibility = View.GONE
