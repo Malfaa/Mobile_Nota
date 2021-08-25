@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_launcher_notas_background.xml" value="0.3640625" />
+        <entry key="app/src/main/res/layout-v21/main_notas_fragment.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/main_notas_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/nota.xml" value="0.46617238183503246" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3640625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_notas.xml" value="0.3640625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_notas_round.xml" value="0.3640625" />
       </map>
     </option>
   </component>

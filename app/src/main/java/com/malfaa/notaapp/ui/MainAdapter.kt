@@ -16,7 +16,7 @@ import com.malfaa.notaapp.room.NotaDatabase
 class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.ViewHolder>(NotaDiffCallback()){
      private val dataSource = NotaDatabase.getDatabase(context).notaDao()
 
-    val editTeste = MutableLiveData<Boolean>()
+    var editTeste = MutableLiveData<Boolean>()
     lateinit var notaAEditar:Nota
 
     class ViewHolder private constructor(val binding: NotaBinding): RecyclerView.ViewHolder(binding.root) {

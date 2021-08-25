@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="botao_etc_cor">#81b9bf</color>
-    <color name="nota_cor">#b2ebf2</color>
-    <color name="detalhe_cor">#e5ffff</color>
+    <color name="nota_cor_azul">#b2ebf2</color>
+    <color name="nota_cor_amarelo">#fff9c4</color>
+    <color name="detalhe_cor_azul">#e5ffff</color>
+    <color name="detalhe_cor_amarelo">#fffff7</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="cor_header">#81b9bf</color>
 </resources>

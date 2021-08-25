@@ -3,7 +3,7 @@
     <style name="Theme.NotaApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/botao_etc_cor</item>
-        <item name="colorPrimaryVariant">@color/detalhe_cor</item>
+        <item name="colorPrimaryVariant">@color/detalhe_cor_azul</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
