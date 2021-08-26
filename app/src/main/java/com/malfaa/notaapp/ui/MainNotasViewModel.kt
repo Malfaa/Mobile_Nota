@@ -1,6 +1,5 @@
 package com.malfaa.notaapp.ui
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.malfaa.notaapp.room.Nota
 import com.malfaa.notaapp.room.NotaDao

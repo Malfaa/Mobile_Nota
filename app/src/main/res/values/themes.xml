@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.NotaApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#D5D0A7</item> <!--#81b9bf-->
+        <item name="colorPrimary">@color/cor_header</item> <!--#81b9bf-->
         <item name="colorPrimaryVariant">@color/detalhe_cor_azul</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

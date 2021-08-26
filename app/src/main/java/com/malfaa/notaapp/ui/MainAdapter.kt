@@ -1,5 +1,6 @@
 package com.malfaa.notaapp.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -40,8 +41,9 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
             return oldItem.notaId == newItem.notaId
         }
 
-        override fun areContentsTheSame(oldItem: Nota , newItem: Nota): Boolean {
-            return oldItem == newItem
+        @SuppressLint("DiffUtilEquals")
+        override fun areContentsTheSame(oldItem: Nota, newItem: Nota): Boolean {
+            return oldItem === newItem
         }
     }
 
@@ -66,7 +68,7 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
         holder.binding.nota.setOnLongClickListener{
             try {
                 Log.d("Info", "Clicado - ${item.nota}")
-                notaAEditar = item //mudei aqui || notaAEdita
+                notaAEditar = item
                 editTeste.value = true
             }catch (e: Exception){
                 Log.d("Erro ao editar", e.toString())

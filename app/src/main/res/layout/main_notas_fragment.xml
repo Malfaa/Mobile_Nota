@@ -27,13 +27,12 @@
             android:layout_marginBottom="@dimen/nota_dimen"
             android:ems="10"
             android:hint="@string/nota"
-            android:minHeight="48dp"
+            android:importantForAutofill="no"
             android:inputType="text"
-            android:maxLines="3"
+            android:minHeight="48dp"
             app:layout_constraintBottom_toTopOf="@+id/notaRecycler"
             app:layout_constraintStart_toStartOf="@+id/notaRecycler"
             app:layout_constraintTop_toTopOf="parent"
-            android:importantForAutofill="no"
             tools:ignore="TextFields" />
 
         <Button
@@ -71,13 +70,12 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/nota_dimen"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/notaTexto"
-            app:stackFromEnd="true"
             app:reverseLayout="true"
-            />
+            app:stackFromEnd="true" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

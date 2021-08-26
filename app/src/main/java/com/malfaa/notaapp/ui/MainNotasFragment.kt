@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.malfaa.notaapp.R
 import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
@@ -53,37 +54,31 @@ class MainNotasFragment : Fragment() {
         binding.adcBtn.setOnClickListener {
             if(binding.notaTexto.text.isNotEmpty()){
                 viewModel.adicionandoNota(Nota(binding.notaTexto.text.toString()))
-                Toast.makeText(context, "Adicionado" ,Toast.LENGTH_LONG).show()
-                binding.notaTexto.setText("")
-                binding.notaTexto.hideKeyboard()
+                adapter?.editTeste?.value = false
+                Toast.makeText(context, "Adicionado" ,Toast.LENGTH_SHORT).show()
 
             }else{
-                Toast.makeText(context, "Insira algum caractére" ,Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Insira algum caractére" ,Toast.LENGTH_SHORT).show()
+                adapter?.editTeste?.value = false
             }
         }
 
         binding.edtBtn.setOnClickListener{
             if(binding.notaTexto.text.toString() != adapter?.notaAEditar?.nota){
                 adapter?.notaAEditar?.nota = binding.notaTexto.text.toString()
+                adapter?.editTeste?.value = false
+                Toast.makeText(context, "Editado" ,Toast.LENGTH_SHORT).show()
 
                 val novaNota = adapter!!.notaAEditar
                 viewModel.atualizandoNota(novaNota)
-
-                Toast.makeText(context, "Editado" ,Toast.LENGTH_LONG).show()
-                adapter.editTeste.value = false
-                binding.notaTexto.setText("")
-                binding.notaTexto.hideKeyboard()
-
-                adapter.submitList(viewModel.dataSet.value) // FIXME: 24/08/2021 aqui pra att, n funciona
-
             }else{
                 adapter.editTeste.value = false
-                binding.notaTexto.hideKeyboard()
-                Toast.makeText(context, "Nada alterado" ,Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Nada alterado" ,Toast.LENGTH_SHORT).show()
             }
         }
 
-        // TODO: 19/08/2021 RESOLVER PROBLEMA DE ATUALIZAR O REYCLERVIEW QUANDO EDITADO e pra trocar o edittext value p/ false
+        // TODO: 25/08/2021 Arrumar quando em modo Landscape
+        // TODO: 25/08/2021 Arrumar edittext (?)
 
         adapter?.editTeste?.observe(viewLifecycleOwner, {
             if (adapter.editTeste.value == true) {
@@ -92,23 +87,25 @@ class MainNotasFragment : Fragment() {
                 binding.MainNotasFragment.setBackgroundColor(Color.parseColor("#fafafa"))
                 binding.notaTexto.setText(adapter.notaAEditar.nota)
 
-                //PARA TESTE binding.notaTexto.setNota(adapter.notaAEditar)
-            }
-            binding.MainNotasFragment.setOnClickListener {
-                binding.edtBtn.visibility = View.GONE
-                binding.adcBtn.visibility = View.VISIBLE
-                adapter.editTeste.value = false
+            }else{
                 binding.notaTexto.setText("")
                 binding.notaTexto.hideKeyboard()
+                binding.edtBtn.visibility = View.GONE
+                binding.adcBtn.visibility = View.VISIBLE
                 binding.MainNotasFragment.setBackgroundColor(Color.WHITE)
-                Log.d("EditTeste", adapter.editTeste.value.toString())
+            }
+            binding.MainNotasFragment.setOnClickListener {
+                adapter.editTeste.value = false
             }
 
+            binding.notaRecycler.setOnClickListener{
+                adapter.editTeste.value = false
+            }
         })
 
         viewModel.dataSet.observe(viewLifecycleOwner, {
             it?.let {
-                adapter?.submitList(it)
+                adapter?.submitList(it.toMutableList())
             }
         })
     }
