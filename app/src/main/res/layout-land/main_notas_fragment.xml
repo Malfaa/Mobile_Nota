@@ -20,11 +20,13 @@
 
         <EditText
             android:id="@+id/notaTexto"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/nota_dimen"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="@dimen/nota_dimen"
             android:ems="10"
             android:hint="@string/nota"
@@ -32,6 +34,7 @@
             android:inputType="text"
             android:minHeight="48dp"
             app:layout_constraintBottom_toTopOf="@+id/notaRecycler"
+            app:layout_constraintEnd_toStartOf="@+id/adcBtn"
             app:layout_constraintStart_toStartOf="@+id/notaRecycler"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TextFields" />
@@ -40,22 +43,17 @@
             android:id="@+id/adcBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/nota_dimen"
-            android:layout_marginLeft="@dimen/nota_dimen"
             android:layout_marginEnd="@dimen/nota_dimen"
             android:layout_marginRight="@dimen/nota_dimen"
+            android:backgroundTint="@color/nota_cor_amarelo"
             android:text="@string/adcNota"
             android:textColor="#616161"
-            android:backgroundTint="@color/nota_cor_amarelo"
             app:layout_constraintBaseline_toBaselineOf="@+id/notaTexto"
-            app:layout_constraintEnd_toEndOf="@+id/notaRecycler"
-            app:layout_constraintStart_toEndOf="@+id/notaTexto" />
+            app:layout_constraintEnd_toEndOf="@+id/notaRecycler" />
         <Button
             android:id="@+id/edtBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/nota_dimen"
-            android:layout_marginLeft="@dimen/nota_dimen"
             android:layout_marginEnd="@dimen/nota_dimen"
             android:layout_marginRight="@dimen/nota_dimen"
             android:visibility="gone"
@@ -77,6 +75,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notaTexto"
             app:reverseLayout="true"
-            app:stackFromEnd="true"/>
+            app:stackFromEnd="true" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

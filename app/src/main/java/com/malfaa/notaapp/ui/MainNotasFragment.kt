@@ -1,17 +1,19 @@
 package com.malfaa.notaapp.ui
 
+import android.app.ActionBar
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.WindowDecorActionBar
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.malfaa.notaapp.R
 import com.malfaa.notaapp.databinding.MainNotasFragmentBinding
@@ -29,6 +31,7 @@ class MainNotasFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_notas_fragment, container, false)
+
         return binding.root
     }
 
@@ -76,9 +79,6 @@ class MainNotasFragment : Fragment() {
                 Toast.makeText(context, "Nada alterado" ,Toast.LENGTH_SHORT).show()
             }
         }
-
-        // TODO: 25/08/2021 Arrumar quando em modo Landscape
-        // TODO: 25/08/2021 Arrumar edittext (?)
 
         adapter?.editTeste?.observe(viewLifecycleOwner, {
             if (adapter.editTeste.value == true) {

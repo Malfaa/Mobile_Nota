@@ -40,7 +40,6 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
         override fun areItemsTheSame(oldItem: Nota, newItem: Nota): Boolean {
             return oldItem.notaId == newItem.notaId
         }
-
         @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: Nota, newItem: Nota): Boolean {
             return oldItem === newItem
@@ -57,11 +56,10 @@ class MainAdapter(private val context: Context) : ListAdapter<Nota, MainAdapter.
 
         holder.binding.deletarNota.setOnClickListener{
             try {
-                Log.d("Info Ao Deletar", item.nota)
                 MainNotasViewModel(dataSource).deletandoNota(item)
                 Toast.makeText(context, "Deletado", Toast.LENGTH_LONG).show()
             }catch (e: Exception){
-                Log.d("Erro ao deletar", e.toString())
+                Toast.makeText(context, "Erro: $e",Toast.LENGTH_SHORT).show()
             }
         }
 
