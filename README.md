@@ -1,5 +1,3 @@
-# Nota Rápida - APP
-
 Nota Rápida é um aplicativo nativo feito com a linguagem Kotlin. Projeto num. **1** <br/>
 *Detalhes/Bibliotecas:*
 - **Arquitetura MVVM**
